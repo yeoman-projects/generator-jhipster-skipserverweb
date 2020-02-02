@@ -62,7 +62,7 @@ yarn global upgrade generator-jhipster-skipserverweb
 To use this blueprint in your Jhipster project run the command bellow:
 
 ```bash
-jhipster --blueprint skipserverweb
+jhipster --blueprints skipserverweb
 ```
 
 ## Running local Blueprint version for development
@@ -98,7 +98,7 @@ mkdir my-app && cd my-app
 npm link generator-jhipster-skipserverweb
 npm link generator-jhipster (Optional: Needed only if you are using a non-released JHipster version)
 
-jhipster -d --blueprint skipserverweb
+jhipster -d --blueprints skipserverweb
 
 ```
 
