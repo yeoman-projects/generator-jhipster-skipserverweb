@@ -7,7 +7,7 @@
     "jhipster-blueprint",
     "jhipster-6"
   ],
-  "homepage": "https://github.com/dmadunic/generator-jhipster-skipserverweb",
+  "homepage": "https://gitlab.com/jhipster3/generator-jhipster-skipserverweb",
   "author": {
     "name": "Domagoj Madunić",
     "email": "domagoj.madunic@gmail.com",
@@ -19,7 +19,7 @@
   "main": "generators/app/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dmadunic/generator-jhipster-skipserverweb.git"
+    "url": "git+https://gitlab.com/jhipster3/generator-jhipster-skipserverweb.git"
   },
   "dependencies": {
     "chalk": "2.4.1",
