@@ -6,7 +6,7 @@
 
 This is a [JHipster](https://www.jhipster.tech/) blueprint, that is meant to be used in a JHipster application.
 
-This blueprint is intended for applications/projects that would like to take benefit from JHippster generator capabilities in creating Java JPA model, DTO's, JPA Repositories and Service layer, but **do not need** Controllers, Mappers and other components specific for Web applications.
+This blueprint is intended for applications/projects that would like to take benefit from JHippster generator capabilities in creating Java JPA model, DTO's, JPA Repositories and Service layer, but **do not need** Rest Controllers and other components specific for Web applications.
 
 Examples of this kind of applications would be: Spring Shell CLI apps, or Java FX based Desktop applications.
 
@@ -64,6 +64,26 @@ To use this blueprint in your Jhipster project run the command bellow:
 ```bash
 jhipster --blueprints skipserverweb
 ```
+
+Once the application is created modify it to suite your needs.
+
+The most important part that needs to be customized is security configuration. This sub-generator will skip generation of all web based SpringSecurity Configuration files and will just create the most basic SpringConfiguration file, with the following content:
+
+```java
+@Configuration
+@EnableGlobalMethodSecurity(securedEnabled = true)
+public class SpringSecurityConfig {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+}
+```
+
+It is up to you to setup security configuration to match your needs. All standard Jhipter security related tables, liquibase datasets, entities, services and repositories are still created. 
+
 
 ## Running local Blueprint version for development
 
