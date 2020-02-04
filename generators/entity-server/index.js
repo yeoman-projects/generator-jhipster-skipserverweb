@@ -1,8 +1,7 @@
 /* eslint-disable consistent-return */
 const chalk = require('chalk');
 const EntityServerGenerator = require('generator-jhipster/generators/entity-server');
-const writeFiles = require('./files').writeFiles;
-const serverFilesFiltered = require('./files').serverFilesFiltered;
+const filterWebFiles = require('./files').filterWebFiles;
 
 module.exports = class extends EntityServerGenerator {
     constructor(args, opts) {
@@ -11,13 +10,20 @@ module.exports = class extends EntityServerGenerator {
         const jhContext = (this.jhipsterContext = this.options.jhipsterContext);
 
         if (!jhContext) {
-            this.error(`This is a JHipster blueprint and should be used only like ${chalk.yellow('jhipster --blueprint skipserverweb')}`);
+            this.error(`This is a JHipster blueprint and should be used only like ${chalk.yellow('jhipster --blueprints skipserverweb')}`);
         }
 
         this.configOptions = jhContext.configOptions || {};
         if (jhContext.databaseType === 'cassandra') {
             this.pkType = 'UUID';
         }
+    }
+
+    get initializing() {
+        const phaseFromJHipster = super._initializing();
+        const phaseFromSkipServerWeb = filterWebFiles();
+
+        return Object.assign(phaseFromJHipster, phaseFromSkipServerWeb);
     }
 
     get writing() {
@@ -57,6 +63,6 @@ module.exports = class extends EntityServerGenerator {
          *      return Object.assign(phaseFromJHipster, myCustomPhaseSteps);
          * ```
          */
-        return writeFiles();
+        return super._writing();
     }
 };

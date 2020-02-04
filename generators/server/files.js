@@ -45,7 +45,6 @@ const serverJavaWebFiles = [
 ];
 
 const serverTestFwFiles = [
-    'package/web/rest/TestUtil.java',
     'package/web/rest/errors/ExceptionTranslatorIT.java',
     'package/web/rest/errors/ExceptionTranslatorTestController.java',
     'package/web/rest/ClientForwardControllerTest.java',
@@ -68,31 +67,54 @@ const serverJavaUserManagementFiles = [
     'templates/mail/creationEmail.html',
     'templates/mail/passwordResetEmail.html'
 ];
+
+const customSkipServerWebServerFiles = {
+    skipServerWebModule: [
+    {
+        path: SERVER_MAIN_SRC_DIR,
+        templates: [
+            {
+                file: 'package/config/SecurityConfiguration.java',
+                renameTo: generator => `${generator.javaDir}config/SecurityConfiguration.java`
+            }
+        ]
+    },
+    {
+        path: SERVER_MAIN_SRC_DIR,
+        templates: [
+            { 
+                file: 'package/Application.java', 
+                renameTo: generator => `${generator.javaDir}${generator.mainClass}.java` 
+            }
+        ]
+    }
+    ]
+};
 /*
 
 */
 function filterWebFiles() {
     return {
         filterFiles() {
-            this.log(chalk.italic('\nFiltering web related Java files from: serverJavaAuthConfig.'));
+            this.log(chalk.italic('\n[server] Filtering web related Java files from: serverJavaAuthConfig.'));
             serverFiles.serverJavaAuthConfig = fileUtils.filterGroup(serverFiles.serverJavaAuthConfig, serverJavaAuthConfigFiles);;
 
-            this.log(chalk.italic('Filtering web related Java files from: serverJavaApp.'));
+            this.log(chalk.italic('[server] Filtering web related Java files from: serverJavaApp.'));
             serverFiles.serverJavaApp = fileUtils.filterGroup(serverFiles.serverJavaApp, serverJavaAppFiles);
 
-            this.log(chalk.italic('Filtering web related Java files from: serverJavaConfig.'));
+            this.log(chalk.italic('[server] Filtering web related Java files from: serverJavaConfig.'));
             serverFiles.serverJavaConfig = fileUtils.filterGroup(serverFiles.serverJavaConfig, serverJavaConfigFiles);
             
-            this.log(chalk.italic('Filtering web related Java files from: serverJavaWebError.'));
+            this.log(chalk.italic('[server] Filtering web related Java files from: serverJavaWebError.'));
             serverFiles.serverJavaWebError = fileUtils.filterGroup(serverFiles.serverJavaWebError, serverJavaWebErrorFiles);
 
-            this.log(chalk.italic('Filtering web related Java files from: serverJavaWeb.'));
+            this.log(chalk.italic('[server] Filtering web related Java files from: serverJavaWeb.'));
             serverFiles.serverJavaWeb = fileUtils.filterGroup(serverFiles.serverJavaWeb, serverJavaWebFiles);
             
-            this.log(chalk.italic('Filtering web related Java files from: serverTestFw.'));
+            this.log(chalk.italic('[server] Filtering web related Java files from: serverTestFw.'));
             serverFiles.serverTestFw = fileUtils.filterGroup(serverFiles.serverTestFw, serverTestFwFiles);
 
-            this.log(chalk.italic('Filtering web related Java files from: serverJavaUserManagement.\n'));
+            this.log(chalk.italic('[server] Filtering web related Java files from: serverJavaUserManagement.\n'));
             serverFiles.serverJavaUserManagement = fileUtils.filterGroup(serverFiles.serverJavaUserManagement, serverJavaUserManagementFiles);
         }
     };
@@ -101,28 +123,6 @@ function filterWebFiles() {
 function writeCustomFiles() {
     return {
         writeCustomFiles() {
-            const customSkipServerWebServerFiles = {
-                skipServerWebModule: [
-                {
-                    path: SERVER_MAIN_SRC_DIR,
-                    templates: [
-                        {
-                            file: 'package/config/SecurityConfiguration.java',
-                            renameTo: generator => `${generator.javaDir}config/SecurityConfiguration.java`
-                        }
-                    ]
-                },
-                {
-                    path: SERVER_MAIN_SRC_DIR,
-                    templates: [
-                        { 
-                            file: 'package/Application.java', 
-                            renameTo: generator => `${generator.javaDir}${generator.mainClass}.java` 
-                        }
-                    ]
-                }
-            ]
-            };
             this.writeFilesToDisk(customSkipServerWebServerFiles, this, false);
         }
     }
