@@ -19,7 +19,7 @@ Current version of the bluprint does not change any of the build files: gradle.b
 You still need to manually remove web dependencies you do not need from those!
 
 # Supported JHipster version
-Current version of the JHipster generator this bluprint is adjusted for, is JHipster version **6.6.0**.
+Current version of the JHipster generator this bluprint is adjusted for, is JHipster version **6.8.0**.
 
 # Prerequisites
 
