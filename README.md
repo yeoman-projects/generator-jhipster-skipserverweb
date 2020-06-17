@@ -36,6 +36,7 @@ To install this blueprint:
 ```bash
 npm install -g generator-jhipster-skipserverweb
 ```
+This will install the latest version of the blueprint.
 
 To update this blueprint:
 
@@ -85,6 +86,14 @@ public class SpringSecurityConfig {
 It is up to you to setup security configuration to match your needs. All standard Jhipter security related tables, liquibase datasets, entities, services and repositories are still created. 
 
 
+# Further Development
+
+Simply checkout blueprint git repoisitroy to local folder:
+```bash
+git checkout https://github.com/dmadunic/generator-jhipster-skipserverweb.git
+```
+and you are ready to go.
+
 ## Running local Blueprint version for development
 
 During development of blueprint, please note the below steps. They are very important.
@@ -106,7 +115,7 @@ You could also use Yarn for this if you prefer
 cd generator-jhipster
 npm link
 
-cd skipserverweb
+cd generator-jhipster-skipserverweb
 npm link generator-jhipster
 ```
 
@@ -121,6 +130,10 @@ npm link generator-jhipster (Optional: Needed only if you are using a non-releas
 jhipster -d --blueprints skipserverweb
 
 ```
+
+## Publish new npm package of the blueprint 
+
+
 
 # License
 
