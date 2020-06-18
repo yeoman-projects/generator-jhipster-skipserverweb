@@ -46,8 +46,6 @@ module.exports = class extends ServerGenerator {
         const writingFromJHipster = super._writing();
         const writingFromSkipServerWeb = writeCustomFiles();
         return Object.assign(writingFromJHipster, writingFromSkipServerWeb);
-        
-        //return super._writing();
     }
 
     get install() {

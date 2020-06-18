@@ -4,12 +4,17 @@ const EntityGenerator = require('generator-jhipster/generators/entity');
 
 module.exports = class extends EntityGenerator {
     constructor(args, opts) {
+        // eslint-disable-next-line prefer-object-spread
         super(args, Object.assign({ fromBlueprint: true }, opts)); // fromBlueprint variable is important
 
-        const jhContext = this.jhipsterContext = this.options.jhipsterContext;
+        const jhContext = (this.jhipsterContext = this.options.jhipsterContext);
 
         if (!jhContext) {
-            this.error(`This is a JHipster blueprint and should be used only like ${chalk.yellow('jhipster --blueprint generator-jhipster-sample-blueprint')}`);
+            this.error(
+                `This is a JHipster blueprint and should be used only like ${chalk.yellow(
+                    'jhipster --blueprint generator-jhipster-sample-blueprint'
+                )}`
+            );
         }
 
         this.configOptions = jhContext.configOptions || {};
@@ -34,7 +39,7 @@ module.exports = class extends EntityGenerator {
 
     get writing() {
         const phaseFromJHipster = super._writing();
-        const myCustomPhaseSteps = {
+        const customSkipServerWebPhaseSteps = {
             composeServer() {
                 const context = this.context;
                 if (context.skipServer) return;
@@ -47,13 +52,12 @@ module.exports = class extends EntityGenerator {
                     debug: context.isDebugEnabled
                 });
             }
-        }
-        return Object.assign(phaseFromJHipster, myCustomPhaseSteps);
-        //return super._writing();
+        };
+        return Object.assign(phaseFromJHipster, customSkipServerWebPhaseSteps);
     }
 
     get install() {
         // Here we are not overriding this phase and hence its being handled by JHipster
         return super._install();
     }
-}
+};

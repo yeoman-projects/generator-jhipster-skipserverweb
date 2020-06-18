@@ -1,8 +1,8 @@
 const chalk = require('chalk');
-const _ = require('lodash');
-const fileUtils = require('../file-utils');
+
 const serverFiles = require('generator-jhipster/generators/server/files').serverFiles;
 const constants = require('generator-jhipster/generators/generator-constants');
+const fileUtils = require('../file-utils');
 
 const SERVER_MAIN_SRC_DIR = constants.SERVER_MAIN_SRC_DIR;
 
@@ -15,15 +15,9 @@ const serverJavaAuthConfigFiles = [
     'package/web/rest/vm/LoginVM.java'
 ];
 
-// 
-const serverJavaAppFiles = [
-    'package/Application.java',
-    'package/ApplicationWebXml.java'
-];
+const serverJavaAppFiles = ['package/Application.java', 'package/ApplicationWebXml.java'];
 
-const serverJavaConfigFiles = [
-    'package/config/WebConfigurer.java'
-];
+const serverJavaConfigFiles = ['package/config/WebConfigurer.java'];
 
 const serverJavaWebErrorFiles = [
     'package/web/rest/errors/package-info.java',
@@ -70,52 +64,53 @@ const serverJavaUserManagementFiles = [
 
 const customSkipServerWebServerFiles = {
     skipServerWebModule: [
-    {
-        path: SERVER_MAIN_SRC_DIR,
-        templates: [
-            {
-                file: 'package/config/SecurityConfiguration.java',
-                renameTo: generator => `${generator.javaDir}config/SecurityConfiguration.java`
-            }
-        ]
-    },
-    {
-        path: SERVER_MAIN_SRC_DIR,
-        templates: [
-            { 
-                file: 'package/Application.java', 
-                renameTo: generator => `${generator.javaDir}${generator.mainClass}.java` 
-            }
-        ]
-    }
+        {
+            path: SERVER_MAIN_SRC_DIR,
+            templates: [
+                {
+                    file: 'package/config/SecurityConfiguration.java',
+                    renameTo: generator => `${generator.javaDir}config/SecurityConfiguration.java`
+                }
+            ]
+        },
+        {
+            path: SERVER_MAIN_SRC_DIR,
+            templates: [
+                {
+                    file: 'package/Application.java',
+                    renameTo: generator => `${generator.javaDir}${generator.mainClass}.java`
+                }
+            ]
+        }
     ]
 };
-/*
 
-*/
 function filterWebFiles() {
     return {
         filterFiles() {
             this.log(`\n[generator:server] ${chalk.italic('Filtering web related Java files from: serverJavaAuthConfig.')}`);
-            serverFiles.serverJavaAuthConfig = fileUtils.filterGroup(serverFiles.serverJavaAuthConfig, serverJavaAuthConfigFiles);;
+            serverFiles.serverJavaAuthConfig = fileUtils.filterGroup(serverFiles.serverJavaAuthConfig, serverJavaAuthConfigFiles);
 
             this.log(`[generator:server] ${chalk.italic('Filtering web related Java files from: serverJavaApp.')}`);
             serverFiles.serverJavaApp = fileUtils.filterGroup(serverFiles.serverJavaApp, serverJavaAppFiles);
 
             this.log(`[generator:server] ${chalk.italic('Filtering web related Java files from: serverJavaConfig.')}`);
             serverFiles.serverJavaConfig = fileUtils.filterGroup(serverFiles.serverJavaConfig, serverJavaConfigFiles);
-            
+
             this.log(`[generator:server] ${chalk.italic('Filtering web related Java files from: serverJavaWebError.')}`);
             serverFiles.serverJavaWebError = fileUtils.filterGroup(serverFiles.serverJavaWebError, serverJavaWebErrorFiles);
 
             this.log(`[generator:server] ${chalk.italic('Filtering web related Java files from: serverJavaWeb.')}`);
             serverFiles.serverJavaWeb = fileUtils.filterGroup(serverFiles.serverJavaWeb, serverJavaWebFiles);
-            
+
             this.log(`[generator:server] ${chalk.italic('Filtering web related Java files from: serverTestFw.')}`);
             serverFiles.serverTestFw = fileUtils.filterGroup(serverFiles.serverTestFw, serverTestFwFiles);
 
             this.log(`[generator:server] ${chalk.italic('Filtering web related Java files from: serverJavaUserManagement.')}\n`);
-            serverFiles.serverJavaUserManagement = fileUtils.filterGroup(serverFiles.serverJavaUserManagement, serverJavaUserManagementFiles);
+            serverFiles.serverJavaUserManagement = fileUtils.filterGroup(
+                serverFiles.serverJavaUserManagement,
+                serverJavaUserManagementFiles
+            );
         }
     };
 }
@@ -125,10 +120,10 @@ function writeCustomFiles() {
         writeCustomFiles() {
             this.writeFilesToDisk(customSkipServerWebServerFiles, this, false);
         }
-    }
+    };
 }
 
 module.exports = {
     writeCustomFiles,
-    filterWebFiles    
+    filterWebFiles
 };
