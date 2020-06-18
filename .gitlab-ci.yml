@@ -1,6 +1,5 @@
 image: node:10
 variables:
-  NPM_AUTH_TOKEN: ${NPM_AUTH_TOKEN}
   GIT_DEPTH: 0
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -24,6 +23,7 @@ publish:
   only:
     - tags
   script:
+    - echo $NPM_AUTH_TOKEN
     - echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
     - cat ~/.npmrc
     - npm publish
