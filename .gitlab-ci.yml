@@ -1,6 +1,6 @@
 image: node:10
 variables:
-  NPM_AUTH_TOKEN: ${NPM_TOKEN}
+  NPM_AUTH_TOKEN: ${NPM_AUTH_TOKEN}
   GIT_DEPTH: 0
 cache:
   key: ${CI_COMMIT_REF_SLUG}
