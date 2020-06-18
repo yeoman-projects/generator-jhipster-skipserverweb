@@ -23,7 +23,5 @@ publish:
   only:
     - tags
   script:
-    - echo $NPM_AUTH_TOKEN
     - echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
-    - cat ~/.npmrc
     - npm publish
