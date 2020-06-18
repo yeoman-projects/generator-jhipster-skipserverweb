@@ -143,8 +143,7 @@ npm release:minor
 npm release:major
 ```
 
-
-### Publish on commit with the version tag
+### Publish (automatically) on commit with the version tag
 
 For publish to occur automaticly on every commit with the version tag, two configuration steps need to be taken.
 
@@ -156,7 +155,7 @@ For publish to occur automaticly on every commit with the version tag, two confi
 After this is done, in order to publish new package version simply run:
 
 ```
-npm version
+npm version patch | minor | major
 ```
 followed by commit of your changes.
 This will trigger GitLab CI/CD pipeline that will as the last step publish package to the npmjs.
