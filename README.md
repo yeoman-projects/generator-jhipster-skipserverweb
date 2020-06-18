@@ -136,23 +136,26 @@ jhipster -d --blueprints skipserverweb
 ### Publish manually
 
 ```
+npm version
 npm publish
 ```
 Do not forget to increase version before running publish command.
 
 
-### Publish on commit to the 'release' branch
+### Publish on commit with the version tag
 
-For publish to occur automaticly on every commit to the relase branch, two steps need to be taken.
+For publish to occur automaticly on every commit with the version tag, two configuration steps need to be taken.
 
 1) Create npmjs Auth Token with **Read and publish** access level. (For more see: [https://www.npmjs.com/settings/dmadunic/tokens](https://www.npmjs.com/settings/dmadunic/tokens))
 
 2) Configure GitLab CI/CD environment variable of name NPM_TOKEN
 - Once you have created the token above, copy its value and create new GitLab Ci/CD variable with the name NPM_TOKEN and this value.
 
-If it does not exist create **publish** branch.
+After that is done just run:
 
-
+```
+npm version
+```
 
 # License
 
