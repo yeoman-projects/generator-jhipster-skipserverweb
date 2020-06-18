@@ -1,6 +1,6 @@
 {
   "name": "generator-jhipster-skipserverweb",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Jhipster blueprint that allows for Java web layer to be skiped during server side code generation.",
   "keywords": [
     "yeoman-generator",
