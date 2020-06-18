@@ -12,6 +12,11 @@ Examples of this kind of applications would be: Spring Shell CLI apps, or Java F
 
 In short, once installed, this bluprint will skip the generation of all server web components.
 
+This blueprint affects the following generators:
+* entity-server
+* server
+
+
 **What this blueprint does not do at the moment!**
 
 Current version of the bluprint does not change any of the build files: gradle.build or pom.xml. 
