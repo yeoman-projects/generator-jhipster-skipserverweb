@@ -152,7 +152,7 @@ npm release:major
 
 For publish to occur automaticly on every commit with the version tag, two configuration steps need to be taken.
 
-1) Create npmjs Auth Token with **Read and publish** access level. (For more see: [https://www.npmjs.com/settings/dmadunic/tokens](https://www.npmjs.com/settings/dmadunic/tokens))
+1) Create npmjs Auth Token with **Read and publish** access level. (For more see: [https://docs.npmjs.com/about-authentication-tokens](https://docs.npmjs.com/about-authentication-tokens))
 
 2) Configure GitLab CI/CD environment variable of the name **NPM_AUTH_TOKEN**
 - Once you have created the token above, copy its value and create new GitLab Ci/CD variable with the name NPM_TOKEN and this value.
