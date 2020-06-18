@@ -1,4 +1,4 @@
-image: node10
+image: node:10
 variables:
   NPM_TOKEN: ${NPM_TOKEN}
   NPM_HOST_URL: ''
