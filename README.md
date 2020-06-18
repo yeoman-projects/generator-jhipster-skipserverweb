@@ -135,11 +135,13 @@ jhipster -d --blueprints skipserverweb
 
 ### Publish manually
 
+To publish package to npmjs manually, execute one of these commands:
+
 ```
-npm version
-npm publish
+npm release:patch
+npm release:minor
+npm release:major
 ```
-Do not forget to increase version before running publish command.
 
 
 ### Publish on commit with the version tag
@@ -151,11 +153,13 @@ For publish to occur automaticly on every commit with the version tag, two confi
 2) Configure GitLab CI/CD environment variable of name NPM_TOKEN
 - Once you have created the token above, copy its value and create new GitLab Ci/CD variable with the name NPM_TOKEN and this value.
 
-After that is done just run:
+After this is done, in order to publish new package version simply run:
 
 ```
 npm version
 ```
+followed by commit of your changes.
+This will trigger GitLab CI/CD pipeline that will as the last step publish package to the npmjs.
 
 # License
 
